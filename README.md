@@ -7,6 +7,12 @@ Cross compiling toolchains in Docker images.
 
 ![GitHub](https://img.shields.io/github/license/dockcross/dockcross) ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/dockcross/dockcross)
 
+# dockcross (JRuby build edition)
+
+If you are looking for the original dockcross, go https://github.com/dockcross/dockcross/
+
+This repository is JUST for building the builders for JRuby FFI and SubSpawn (libfixposix) binaries with appropriate compatibility
+
 ## Features
 
 - Pre-built and configured toolchains for cross compiling.

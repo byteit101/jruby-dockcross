@@ -20,37 +20,17 @@ ORG = dockcross
 BIN = ./bin
 
 # These images are built using the "build implicit rule"
-STANDARD_IMAGES := android-arm android-arm64 android-x86 android-x86_64 \
-	linux-i686 linux-x86 linux-x64 linux-x64-clang linux-arm64 linux-arm64-musl linux-arm64-full \
-	linux-armv5 linux-armv5-musl linux-armv5-uclibc linux-m68k-uclibc linux-s390x linux-x64-tinycc \
-	linux-armv6 linux-armv6-lts linux-armv6-musl linux-arm64-lts linux-mipsel-lts \
-	linux-armv7l-musl linux-armv7 linux-armv7a linux-armv7-lts linux-armv7a-lts linux-x86_64-full \
-	linux-mips linux-mips-uclibc linux-mips-lts linux-ppc64le linux-ppc64le-lts linux-riscv64 linux-riscv32 linux-xtensa-uclibc \
-	web-wasi \
-	windows-static-x86 windows-static-x64 windows-static-x64-posix windows-armv7 \
-	windows-shared-x86 windows-shared-x64 windows-shared-x64-posix windows-arm64 \
-	bare-armv7emhf-nano_newlib
+STANDARD_IMAGES := jrubycrosslinux-arm64 jrubycrosslinux-armv6sf jrubycrosslinux-i686 jrubycrosslinux-loongarch64 jrubycrosslinux-mips64el jrubycrosslinux-ppc64 jrubycrosslinux-ppc64le jrubycrosslinux-riscv64 jrubycrosslinux-s390x jrubycrosslinux-x86_64
+
 
 # Generated Dockerfiles.
-GEN_IMAGES := android-arm android-arm64 \
-	linux-i686 linux-x86 linux-x64 linux-x64-clang linux-arm64 linux-arm64-musl linux-arm64-full \
-	manylinux_2_28-x64 \
-	manylinux2014-x64 manylinux2014-x86 \
-	manylinux2014-aarch64 linux-arm64-lts \
-	web-wasm web-wasi web-wasi-threads linux-mips linux-mips-uclibc linux-mips-lts windows-arm64 windows-armv7 \
-	windows-static-x86 windows-static-x64 windows-static-x64-posix \
-	windows-shared-x86 windows-shared-x64 windows-shared-x64-posix \
-	linux-armv7 linux-armv7a linux-armv7l-musl linux-armv7-lts linux-armv7a-lts linux-x86_64-full \
-	linux-armv6 linux-armv6-lts linux-armv6-musl linux-mipsel-lts \
-	linux-armv5 linux-armv5-musl linux-armv5-uclibc linux-ppc64le linux-ppc64le-lts linux-s390x \
-	linux-riscv64 linux-riscv32 linux-m68k-uclibc linux-x64-tinycc linux-xtensa-uclibc \
-	bare-armv7emhf-nano_newlib
+GEN_IMAGES := jrubycrosslinux-arm64 jrubycrosslinux-armv6sf jrubycrosslinux-i686 jrubycrosslinux-loongarch64 jrubycrosslinux-mips64el jrubycrosslinux-ppc64 jrubycrosslinux-ppc64le jrubycrosslinux-riscv64 jrubycrosslinux-s390x jrubycrosslinux-x86_64
+
 
 GEN_IMAGE_DOCKERFILES = $(addsuffix /Dockerfile,$(GEN_IMAGES))
 
 # These images are expected to have explicit rules for *both* build and testing
-NON_STANDARD_IMAGES := manylinux_2_28-x64 manylinux2014-x64 manylinux2014-x86 \
-		      manylinux2014-aarch64 web-wasm web-wasi-threads
+NON_STANDARD_IMAGES := 
 
 # Docker composite files
 DOCKER_COMPOSITE_SOURCES = common.docker common.debian common.manylinux2014 common.manylinux_2_28 common.buildroot \
