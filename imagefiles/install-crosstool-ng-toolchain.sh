@@ -107,8 +107,10 @@ BUILD="${ROOT}/toolchain"
 mkdir -p "${BUILD}"
 cd "${BUILD}"
 
-cp "${CONFIG_PATH}" "${BUILD}/.config"
-
+# Inflate the defconfigs into full config files
+export DEFCONFIG="${CONFIG_PATH}"
+"${BOOTSTRAP_PREFIX}/bin/ct-ng" defconfig || (tail -250 build.log && exit 1)
+unset DEFCONFIG
 
 # As mentioned in ct-ng config, need to unset LD_LIBRARY_PATH.
 unset LD_LIBRARY_PATH
