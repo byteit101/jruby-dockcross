@@ -6,18 +6,18 @@ LABEL maintainer="Patrick Plenefisch simonpatp@gmail.com"
 # Crosstool-ng version 2022-05-19
 ENV CT_VERSION crosstool-ng-1.26.0
 
-ARG QEMU_VERSION=6.0.0
+ARG QEMU_VERSION=9.0.0
 
 #include "common.crosstool"
 
-ENV CROSS_TRIPLE riscv64-unknown-linux-gnu
+ENV CROSS_TRIPLE loongarch64-unknown-linux-gnu
 
 WORKDIR /usr/src
 
 RUN apt-get install -y libglib2.0-dev zlib1g-dev libpixman-1-dev && \
   curl -L http://wiki.qemu-project.org/download/qemu-${QEMU_VERSION}.tar.bz2 | tar xj && \
   cd qemu-${QEMU_VERSION} && \
-  ./configure --target-list=riscv64-linux-user --prefix=/usr && \
+  ./configure --target-list=loongarch64-linux-user --prefix=/usr && \
   make -j$(nproc) && \
   make install && \
   cd .. && rm -rf qemu-${QEMU_VERSION}
@@ -39,11 +39,11 @@ WORKDIR /work
 COPY Toolchain.cmake /usr/lib/${CROSS_TRIPLE}/
 ENV CMAKE_TOOLCHAIN_FILE /usr/lib/${CROSS_TRIPLE}/Toolchain.cmake
 
-ENV PKG_CONFIG_PATH /usr/lib/riscv64-unknown-linux-gnu/pkgconfig
+ENV PKG_CONFIG_PATH /usr/lib/loongarch64-unknown-linux-gnu/pkgconfig
 
 # Linux kernel cross compilation variables
 ENV PATH ${PATH}:${CROSS_ROOT}/bin
 ENV CROSS_COMPILE ${CROSS_TRIPLE}-
-ENV ARCH riscv64
+ENV ARCH loongarch64
 
 #include "common.label-and-env"
