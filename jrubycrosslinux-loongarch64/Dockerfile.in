@@ -44,6 +44,6 @@ ENV PKG_CONFIG_PATH /usr/lib/loongarch64-unknown-linux-gnu/pkgconfig
 # Linux kernel cross compilation variables
 ENV PATH ${PATH}:${CROSS_ROOT}/bin
 ENV CROSS_COMPILE ${CROSS_TRIPLE}-
-ENV ARCH loongarch64
+ENV ARCH loongarch
 
 #include "common.label-and-env"
